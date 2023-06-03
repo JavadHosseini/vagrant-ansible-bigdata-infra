@@ -1,6 +1,8 @@
 ---
 - hosts: gitlab
   gather_facts: yes
+  accelerate: true
+  accelerate_port: 5099 #default port
   become: true
   roles:
     - geerlingguy.gitlab
