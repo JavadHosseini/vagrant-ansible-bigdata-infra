@@ -1,0 +1,6 @@
+---
+- hosts: gitlab
+  gather_facts: yes
+  become: true
+  roles:
+    - geerlingguy.gitlab
