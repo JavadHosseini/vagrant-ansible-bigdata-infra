@@ -1,0 +1,33 @@
+postgresql_auth_method: 'md5'
+postgresql_user: postgres
+postgresql_hba_entries:
+  - {type: local, database: all, user: postgres, auth_method: peer}
+  - {type: local, database: all, user: all, auth_method: peer}
+  - {type: host, database: all, user: all, address: '127.0.0.1/32', auth_method: "{{ postgresql_auth_method }}"}
+  - {type: host, database: all, user: all, address: '0.0.0.0', auth_method: "{{ postgresql_auth_method }}"}
+  - {type: host, database: all, user: all, address: '::1/128', auth_method: "{{ postgresql_auth_method }}"}
+
+postgresql_databases:
+- name: metabase
+  login_password: 
+  login_user: # defaults to '{{ postgresql_user }}'
+  port: 5432
+  state: present
+
+- name: airflow
+  login_password: 
+  login_user: # defaults to '{{ postgresql_user }}'
+  port: 5432
+  state: present
+
+- name: jupyterhub
+  login_password: 
+  login_user: # defaults to '{{ postgresql_user }}'
+  port: 5432
+  state: present
+
+- name: mlflow_db
+  login_password: 
+  login_user: # defaults to '{{ postgresql_user }}'
+  port: 5432
+  state: present
