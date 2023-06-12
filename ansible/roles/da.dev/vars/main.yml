@@ -8,3 +8,7 @@ packages:
   - git
   - mssql-tools18
   - msodbcsql18
+  - screen
+  - nodejs 
+  - npm
+  - nginx

@@ -26,3 +26,11 @@
     name: "{{ item }}"
   with_items: "{{ packages_to_install | difference(installed_packages | json_query('results[*].name')) }}"
 
+- name: Install configurable-http-proxy
+  npm:
+    name: configurable-http-proxy
+    global: true
+
+- name: Install python requirements
+  pip:
+    requirements: /files/requirements.txt
