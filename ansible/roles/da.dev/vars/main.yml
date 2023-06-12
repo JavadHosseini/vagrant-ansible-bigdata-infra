@@ -1,0 +1,10 @@
+---
+# vars file for da.dev
+packages:
+  - java-11-openjdk-devel
+  - vim
+  - wget
+  - curl
+  - git
+  - mssql-tools18
+  - msodbcsql18

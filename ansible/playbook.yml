@@ -6,12 +6,21 @@
   become: true
   roles:
     - geerlingguy.gitlab
-    - geerlingguy.nfs
 
 - hosts: nfs
   gather_facts: yes
-  # accelerate: true
-  # accelerate_port: 5099 #default port
   become: true
   roles:
     - geerlingguy.nfs
+
+- hosts: postgres
+  gather_facts: yes
+  become: true
+  roles:
+    - geerlingguy.postgresql
+
+- hosts: da-dev
+  gather_facts: yes
+  become: true
+  roles:
+    - da.dev
