@@ -1,20 +1,6 @@
 ---
 # tasks file for da.dev
 
-- name: Install epel release
-  package:
-    name:
-      - epel-release
-    state: latest
-    update_cache: true
-
-- name: Install jdk
-  yum:
-    name:
-      - java-11-openjdk-devel-11.0.16.1.1-1.el7_9.x86_64
-    state: latest
-    update_cache: true
-
 - name: "Get installed packages"
   yum:
     list: "installed"
@@ -25,12 +11,18 @@
     state: "present"
     name: "{{ item }}"
   with_items: "{{ packages_to_install | difference(installed_packages | json_query('results[*].name')) }}"
+  vars:
+      packages_to_install: "{{ lookup('file', '../files/packages').splitlines() }}"
 
-- name: Install configurable-http-proxy
-  npm:
-    name: configurable-http-proxy
-    global: true
+- name: Copy pip requirements file 
+  ansible.builtin.copy:
+    src: ../files/requirements.txt
+    dest: /opt/requirements.txt
+    owner: vagrant
+    group: vagrant
+    mode: '0777'
 
 - name: Install python requirements
   pip:
-    requirements: /files/requirements.txt
+    requirements: /opt/requirements.txt
+    executable: pip3

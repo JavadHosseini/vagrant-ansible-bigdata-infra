@@ -1,0 +1,12 @@
+epel-release
+java-11-openjdk-devel
+vim
+wget
+curl
+git
+screen
+nodejs
+npm
+nginx
+python3
+python-pip
